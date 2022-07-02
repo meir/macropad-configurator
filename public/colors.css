@@ -1,0 +1,45 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+html, body, #app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.background {
+    background-color: var(--background);
+}
+
+.b_high {
+    background-color: var(--f_high);
+}
+
+.f_high {
+    color: var(--f_high);
+}
+
+.b_med {
+    background-color: var(--f_med);
+}
+
+.f_med {
+    color: var(--f_med);
+}
+
+.b_low {
+    background-color: var(--f_low);
+}
+
+.f_low {
+    color: var(--f_low);
+}
+
+.b_inv {
+    background-color: var(--b_inv);
+}
