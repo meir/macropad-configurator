@@ -1,5 +1,5 @@
 <script>
-  import LayerList from './lib/layerlist.svelte'
+  import LayerView from './lib/layerview.svelte'
 </script>
 
-<LayerList></LayerList>
+<LayerView></LayerView>

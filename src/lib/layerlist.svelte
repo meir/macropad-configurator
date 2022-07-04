@@ -1,16 +1,9 @@
 
 <script>
-    import Layer from './layer.svelte'
     import Dots from '../components/dots.svelte'
 
-    const mockdata = {
-        "Default": [[0], [1], [2], [3], [4], [5]],
-        "Layer 1": [[0], [1], [2], [3], [4], [5]],
-        "Layer 2": [[0], [1], [2], [3], [4], [5]],
-        "Layer 3": [[0], [1], [2], [3], [4], [5]],
-    }
-
-    let order = Object.keys(mockdata)
+    export let data;
+    export let selectLayer;
 
     let selected = 0;
 
@@ -27,11 +20,12 @@
 
     function click(index) {
         selected = index;
+        selectLayer(data.order[selected]);
     }
 
     $: {
         if(drag.hoverIndex !== null && drag.dragIndex !== null) {
-            [order[drag.hoverIndex], order[drag.dragIndex]] = [order[drag.dragIndex], order[drag.hoverIndex]];
+            [data.order[drag.hoverIndex], data.order[drag.dragIndex]] = [data.order[drag.dragIndex], data.order[drag.hoverIndex]];
             drag.dragIndex = drag.hoverIndex;
             click(drag.dragIndex);
         }
@@ -45,10 +39,10 @@
                 class={`f_low b_high selected ghost`}
                 style={`top: ${drag.mouseY + drag.distance}px`}
             >
-                {order[drag.dragIndex]}
+                {data.order[drag.dragIndex]}
             </li>
         {/if}
-        {#each order as layer, index}
+        {#each data.order as layer, index}
             <li 
                 class={`f_low b_high ${bc(selected === index, 'selected')} ${bc(drag.dragIndex === index, 'hide')}`} on:click={(e) => click(index)}
                 on:dragover={(e) => {
@@ -78,7 +72,6 @@
                     <Dots/>
                 </span>
                 <div>
-                    <Layer id={index}></Layer>
                     {layer}
                 </div>
             </li>
@@ -90,7 +83,7 @@
     div {
         display: flex;
         height: 100%;
-        width: 20%;
+        width: 25%;
     }
     ul {
         list-style: none;
